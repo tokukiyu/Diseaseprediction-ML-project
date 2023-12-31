@@ -1,9 +1,11 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/display-name */
 // /* eslint-disable no-unused-vars */
 import { useState } from "react";
 import Select from "react-select";
 import { diseaseOptions } from "./data";
-
+import axios from "axios";
+import BarChart from "./Barchart";
 const styles = {
   multiValue: (base, state) => {
     return state.data.isFixed ? { ...base, backgroundColor: "gray" } : base;
@@ -31,7 +33,7 @@ const orderOptions = (values) => {
 
 const DiseaseSelector = () => {
   const [value, setValue] = useState([]);
-
+  const [diseases, setDiseases] = useState([]);
   const onChange = (newValue, actionMeta) => {
     switch (actionMeta.action) {
       case "remove-value":
@@ -51,9 +53,24 @@ const DiseaseSelector = () => {
   };
 
   const handlePredictClick = () => {
-    // Do something with the selected values (e.g., submit to a prediction API)
-    console.log("Selected Values:", value);
-    // You can add logic here to handle the selected values, like making an API call
+    // Extract selected symptoms from the value array
+    const selectedSymptoms = value.map((symptom) => symptom.value);
+
+    // Make a POST request using Axios
+    axios
+      .post("http://127.0.0.1:5000/predict", {
+        symptoms: selectedSymptoms,
+      })
+      .then((response) => {
+        // Handle the response from the server (e.g., display predictions)
+        setDiseases(response.data);
+        console.log("Prediction Result:", response.data);
+        //  console.log(diseases.length);
+      })
+      .catch((error) => {
+        // Handle errors
+        console.error("Error:", error);
+      });
   };
 
   return (
@@ -76,6 +93,8 @@ const DiseaseSelector = () => {
       >
         Predict
       </button>
+
+      {diseases.length > 0 && <BarChart diseases={diseases} />}
     </div>
   );
 };
