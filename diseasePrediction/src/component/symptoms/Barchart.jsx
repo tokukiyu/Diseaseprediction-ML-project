@@ -46,7 +46,7 @@ const BarChart = ({ diseases }) => {
     ],
   };
   return (
-    <div className="w-3/4 shadow p-5 mb-10 rounded-lg m-auto justify-center">
+    <div className=" w-10/12 mt-3 shadow p-10 mb-10 rounded-lg m-auto justify-center">
       <h2 className="text-2xl font-bold mb-4 text-center">
         Your Health Prediction Results
       </h2>

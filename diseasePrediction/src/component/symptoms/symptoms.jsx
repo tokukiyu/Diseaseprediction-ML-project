@@ -31,7 +31,7 @@ const orderOptions = (values) => {
     .concat(values.filter((v) => !v.isFixed));
 };
 
-const DiseaseSelector = () => {
+const DiseaseSelector = ({ clicked }) => {
   const [value, setValue] = useState([]);
   const [diseases, setDiseases] = useState([]);
   const onChange = (newValue, actionMeta) => {
@@ -75,6 +75,9 @@ const DiseaseSelector = () => {
 
   return (
     <div className="w-5/6 m-auto">
+      <button className="pl-1 pr-1 border shadow bg-gray-300 rounded-lg" onClick={clicked}>
+        back
+      </button>
       <h2 className="text-2xl font-bold text-center mb-4">
         Discover Your Health with Our Smart Symptom Checker
       </h2>

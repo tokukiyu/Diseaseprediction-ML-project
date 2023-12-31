@@ -7,11 +7,16 @@ import Footer from "./component/footer";
 import Symptoms from "./component/symptoms/symptoms";
 
 function App() {
+  const [openSymptoms, setOpenSymptoms] = useState(false);
   return (
     <div className="">
-      {/* <Navbar />
-      <Header /> */}
-      <Symptoms />
+      <div className="mt-10">
+        {!openSymptoms ? (
+          <Header clicked={() => setOpenSymptoms(true)} />
+        ) : (
+          <Symptoms clicked={() => setOpenSymptoms(false)} />
+        )}
+      </div>
     </div>
   );
 }
