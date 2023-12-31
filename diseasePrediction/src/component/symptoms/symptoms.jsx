@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/display-name */
 // /* eslint-disable no-unused-vars */
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Select from "react-select";
 import { diseaseOptions } from "./data";
 import axios from "axios";
@@ -32,6 +32,7 @@ const orderOptions = (values) => {
 };
 
 const DiseaseSelector = ({ clicked }) => {
+  const barChartRef = useRef(null);
   const [value, setValue] = useState([]);
   const [diseases, setDiseases] = useState([]);
   const onChange = (newValue, actionMeta) => {
@@ -71,11 +72,20 @@ const DiseaseSelector = ({ clicked }) => {
         // Handle errors
         console.error("Error:", error);
       });
+    // barChartRef.current.scrollIntoView({ behavior: "smooth" });
+    setTimeout(() => {
+      if (barChartRef.current) {
+        barChartRef.current.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 0);
   };
 
   return (
     <div className="w-5/6 m-auto">
-      <button className="pl-1 pr-1 border shadow bg-gray-300 rounded-lg" onClick={clicked}>
+      <button
+        className="pl-1 pr-1 border shadow bg-gray-300 rounded-lg"
+        onClick={clicked}
+      >
         back
       </button>
       <h2 className="text-2xl font-bold text-center mb-4">
@@ -109,8 +119,9 @@ const DiseaseSelector = ({ clicked }) => {
           Get Diagnosis
         </button>
       </div>
-
-      {diseases.length > 0 && <BarChart diseases={diseases} />}
+      <div ref={barChartRef}>
+        {diseases.length > 0 && <BarChart diseases={diseases} />}{" "}
+      </div>
     </div>
   );
 };
