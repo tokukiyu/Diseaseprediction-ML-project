@@ -45,6 +45,25 @@ const BarChart = ({ diseases }) => {
       },
     ],
   };
-  return <Bar options={options} data={data} />;
+  return (
+    <div className="w-3/4 shadow p-5 mb-10 rounded-lg m-auto justify-center">
+      <h2 className="text-2xl font-bold mb-4 text-center">
+        Your Health Prediction Results
+      </h2>
+      <p className="text-gray-600 text-center mb-4">
+        Based on the symptoms you provided, our Smart Health App has analyzed
+        the data and generated the following predictions for your health
+        condition. Explore the results below:
+      </p>
+
+      <Bar options={options} data={data} />
+
+      <p className="text-gray-600 text-center mt-4">
+        Please note that this prediction is not a substitute for professional
+        medical advice. Consult with a healthcare professional for accurate
+        diagnosis and guidance.
+      </p>
+    </div>
+  );
 };
 export default BarChart;

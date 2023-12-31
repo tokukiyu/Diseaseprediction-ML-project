@@ -64,7 +64,7 @@ const DiseaseSelector = () => {
       .then((response) => {
         // Handle the response from the server (e.g., display predictions)
         setDiseases(response.data);
-        console.log("Prediction Result:", response.data);
+        // console.log("Prediction Result:", response.data);
         //  console.log(diseases.length);
       })
       .catch((error) => {
@@ -74,25 +74,38 @@ const DiseaseSelector = () => {
   };
 
   return (
-    <div className="w-1/2 bg-gray-60 m-auto px-8 py-8  ">
-      <Select
-        value={value}
-        styles={styles}
-        isMulti
-        isClearable={value.some((v) => !v.isFixed)}
-        name="colors"
-        className="basic-multi-select"
-        classNamePrefix="select"
-        onChange={onChange}
-        options={diseaseOptions}
-      />
+    <div className="w-5/6 m-auto">
+      <h2 className="text-2xl font-bold text-center mb-4">
+        Discover Your Health with Our Smart Symptom Checker
+      </h2>
+      <p className="text-gray-600 text-center mb-6">
+        Experience the future of healthcare. Simply select your symptoms below,
+        and let our advanced AI analyze and predict potential health conditions
+        for you.
+      </p>
 
-      <button
-        onClick={handlePredictClick}
-        className="my-4 bg-blue-500 text-white px-4 py-2 rounded "
-      >
-        Predict
-      </button>
+      <div className="m-auto justify-center bg-gray-60 px-8 items-center gap-2 flex">
+        <div className="w-96">
+          <Select
+            value={value}
+            styles={styles}
+            isMulti
+            isClearable={value.some((v) => !v.isFixed)}
+            name="colors"
+            className="basic-multi-select"
+            classNamePrefix="select"
+            onChange={onChange}
+            options={diseaseOptions}
+          />
+        </div>
+
+        <button
+          onClick={handlePredictClick}
+          className="my-4 bg-blue-500 text-white px-4 py-2 rounded"
+        >
+          Get Diagnosis
+        </button>
+      </div>
 
       {diseases.length > 0 && <BarChart diseases={diseases} />}
     </div>
