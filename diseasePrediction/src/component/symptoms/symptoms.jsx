@@ -1,29 +1,5 @@
 /* eslint-disable react/display-name */
 // /* eslint-disable no-unused-vars */
-// // Symptoms.js
-// import symptonmsData from "./data"; // Adjust the path based on the actual location of your data.js file
-
-// const Symptoms = () => {
-//   return (
-//     <div>
-//       <div className="sm:grid gap-8 grid-cols-4 md:grid-cols-6 lg:grid-cols-8 m-4">
-//         {symptonmsData.map((disease) => (
-//           <div key={disease.id} className="p-4  bg-blue-100 text-sm shadow-md">
-//             <img
-//               src={disease.image}
-//               alt={disease.name}
-//               className="w-full h-24 object-cover mb-2"
-//             />
-//             <p>{disease.name}</p>
-//           </div>
-//         ))}
-//       </div>
-//       <div className="m-4">Symptoms</div>
-//     </div>
-//   );
-// };
-// export default Symptoms;
-
 import { useState } from "react";
 import Select from "react-select";
 import { diseaseOptions } from "./data";
@@ -34,7 +10,12 @@ const styles = {
   },
   multiValueLabel: (base, state) => {
     return state.data.isFixed
-      ? { ...base, fontWeight: "bold", color: "white", paddingRight: 6 }
+      ? {
+          ...base,
+          fontWeight: "bold",
+          color: "red",
+          paddingRight: 6,
+        }
       : base;
   },
   multiValueRemove: (base, state) => {
@@ -48,7 +29,7 @@ const orderOptions = (values) => {
     .concat(values.filter((v) => !v.isFixed));
 };
 
-export default () => {
+const DiseaseSelector = () => {
   const [value, setValue] = useState([]);
 
   const onChange = (newValue, actionMeta) => {
@@ -69,17 +50,34 @@ export default () => {
     setValue(orderOptions(newValue));
   };
 
+  const handlePredictClick = () => {
+    // Do something with the selected values (e.g., submit to a prediction API)
+    console.log("Selected Values:", value);
+    // You can add logic here to handle the selected values, like making an API call
+  };
+
   return (
-    <Select
-      value={value}
-      styles={styles}
-      isMulti
-      isClearable={value.some((v) => !v.isFixed)}
-      name="colors"
-      className="basic-multi-select"
-      classNamePrefix="select"
-      onChange={onChange}
-      options={diseaseOptions}
-    />
+    <div className="w-1/2 bg-gray-60 m-auto px-8 py-8  ">
+      <Select
+        value={value}
+        styles={styles}
+        isMulti
+        isClearable={value.some((v) => !v.isFixed)}
+        name="colors"
+        className="basic-multi-select"
+        classNamePrefix="select"
+        onChange={onChange}
+        options={diseaseOptions}
+      />
+
+      <button
+        onClick={handlePredictClick}
+        className="my-4 bg-blue-500 text-white px-4 py-2 rounded "
+      >
+        Predict
+      </button>
+    </div>
   );
 };
+
+export default DiseaseSelector;

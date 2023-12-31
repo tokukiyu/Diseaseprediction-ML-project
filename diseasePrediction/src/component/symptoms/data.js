@@ -1,4 +1,3 @@
-// data.js
 export const diseaseOptions = [
   { value: "itching", label: "Itching", isFixed: false },
   { value: "skin_rash", label: "Skin Rash", isFixed: false },
