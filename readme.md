@@ -1,5 +1,5 @@
 
-```markdown
+
 # Disease Prediction System
 
 Predict diseases based on symptoms input. This system uses a machine learning model to analyze symptoms and provide predictions on potential diseases.
@@ -54,16 +54,18 @@ The system provides an API for seamless integration. Refer to the API documentat
 
 The frontend, built with React and Vite, offers an intuitive interface for users to input symptoms and receive predictions. Follow these steps to set up and run the frontend:
 
-
+```
 # Navigate to the frontend directory
 cd frontend
-
+```
+```
 # Install dependencies
 npm install
-
+```
 # Run the development server
+```
 npm run dev
-
+```
 
 ## Contributing
 
