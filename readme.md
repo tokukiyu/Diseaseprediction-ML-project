@@ -24,7 +24,7 @@ Follow these steps to set up the Disease Prediction System on your local machine
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/disease-prediction.git
+git clone https://github.com/tokukiyu/Diseaseprediction-ML-project.git
 
 # Navigate to the project directory
 cd disease-prediction
